@@ -1,0 +1,102 @@
+<!-- <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" > -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"> 
+<!doctype html>
+<html lang="en">
+    <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>My Account</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+            <div class="container">
+            </div>
+        </nav>
+        <h1 style="font-size:26px; background-color:#f99; padding:15px; color:#fff">
+            Vending Machine 
+            <% if(data && data.userInfo && data.userInfo.length>0){ %>
+                <span style="float:right">
+                    <%- data.userInfo[0].name %> (Rs. <%- data.userInfo[0].amount %>)
+                </span>
+            <% } %>
+        </h1>
+        
+        <div id="message"></div>
+        <main class="login-form">
+            <div class="cotainer">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <a href="/fetchProducts">Product Listing</a> | <a href="/">Home</a>
+                        <div class="card">
+                            <div class="card-header">
+                                Order Listing
+                            </div>
+                            <div class="card-body">
+                                <table id="orderTable" class="display" aria-describedby="Contains the list of orders">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Purchased for (Rs.)</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(var i in data.data){ %>
+                                            <tr>
+                                                <td><%- (data.data[i].productId && data.data[i].productId.product_name) ? data.data[i].productId.product_name : "-" %></td>
+                                                <td><%- (data.data[i].productId && data.data[i].productId.price) ? data.data[i].productId.price : "0" %></td>
+                                                <td>
+                                                    <% if(data.data[i].isCancel == 'N'){ %>
+                                                        <button type="button" onclick="processRefund('<%- data.data[i].Id %>')">Cancel & Refund</button>
+                                                    <% }else{ %>
+                                                        <label>Refund has been processed.</lable>
+                                                    <% } %>
+                                                </td>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+<script type="text/javascript" charset="utf8" src="js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#orderTable').DataTable({
+            pageLength : 10,
+            "order": []
+        });
+    } );
+
+    function processRefund(data){
+        if (confirm('Are you sure that you want to cancel the order?')) {
+            $("#message").empty()
+            $.ajax({
+                url: '/processRefund',
+                method: "POST",
+                cache: false,
+                data: {data},
+                success: function (data) {
+                    $("#message").empty().text(data.message)
+                    $("#message").append('<br> Fasten your seat belts, page will reload in 5 seconds.')
+                    setTimeout(function(){
+                        window.location.reload(1);
+                    }, 5000);
+                },
+                complete: function (xhr, error) {
+                    if (xhr.status == '422') {
+                        var data = xhr.responseJSON;
+                        $("#message").empty().text(data.message)
+                    }
+                }
+            });
+        }
+    }
+</script>

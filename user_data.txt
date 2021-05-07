@@ -1,0 +1,6 @@
+[{
+    "first_name": "Fasil",
+    "last_name": "Shaikh",
+    "wallet_amount": 1000000,
+    "status": "A"
+}]

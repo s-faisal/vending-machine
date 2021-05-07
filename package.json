@@ -1,0 +1,25 @@
+{
+  "name": "test_axioned",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "mocha --exit 'src/test/index.test.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "joi": "^13.7.0",
+    "mongoose": "^5.12.7",
+    "mongoose-timestamp": "^0.6.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
+  }
+}

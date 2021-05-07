@@ -1,0 +1,61 @@
+[{
+    "product_name": "Soft Drinks",
+    "type": "Beverages",
+    "price": "100",
+    "status": "A"
+},{
+    "product_name": "Meal Box",
+    "type": "Dinner",
+    "price": "80",
+    "status": "A"
+},{
+    "product_name": "Paneer Meal Box",
+    "type": "Lunch",
+    "price": "100",
+    "status": "A"
+},{
+    "product_name": "Veg Biryani",
+    "type": "Dinner",
+    "price": "120",
+    "status": "A"
+},{
+    "product_name": "Non Veg Biryani",
+    "type": "Dinner",
+    "price": "150",
+    "status": "A"
+},{
+    "product_name": "Momos",
+    "type": "Snacks",
+    "price": "40",
+    "status": "A"
+},{
+    "product_name": "Candy",
+    "type": "Snacks",
+    "price": "13",
+    "status": "A"
+},{
+    "product_name": "Kitkat",
+    "type": "Snacks",
+    "price": "20",
+    "status": "A"
+},{
+    "product_name": "Gems",
+    "type": "Snacks",
+    "price": "5",
+    "status": "A"
+},{
+    "product_name": "Energy Drink",
+    "type": "Beverages",
+    "price": "100",
+    "status": "A"
+},{
+    "product_name": "Chips",
+    "type": "Beverages",
+    "price": "10",
+    "status": "A"
+},{
+    "product_name": "Action Figure",
+    "type": "Toys",
+    "price": "120",
+    "status": "A"
+}]
